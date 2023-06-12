@@ -15,15 +15,15 @@ def test_domtbl(datadir: Path):
     assert row.query.name == "AE014075.1:190-252|amino|11"
     assert row.query.accession == "-"
     assert row.query.length == 21
-    assert row.full_sequence.e_value == "5.3e-10"
-    assert row.full_sequence.score == "38.8"
-    assert row.full_sequence.bias == "17.5"
+    assert row.full_sequence.e_value == 5.3e-10
+    assert row.full_sequence.score == 38.8
+    assert row.full_sequence.bias == 17.5
     assert row.domain.id == 1
     assert row.domain.size == 1
-    assert row.domain.c_value == "3e-14"
-    assert row.domain.i_value == "5.5e-10"
-    assert row.domain.score == "38.8"
-    assert row.domain.bias == "17.5"
+    assert row.domain.c_value == 3e-14
+    assert row.domain.i_value == 5.5e-10
+    assert row.domain.score == 38.8
+    assert row.domain.bias == 17.5
 
     assert row.hmm_coord.start == 1
     assert row.hmm_coord.stop == 22
@@ -40,7 +40,7 @@ def test_domtbl(datadir: Path):
     assert row.env_coord.interval.start == 0
     assert row.env_coord.interval.end == 21
 
-    assert row.acc == "0.99"
+    assert row.acc == 0.99
     assert row.description == "Threonine leader peptide"
 
     row = next(tbl)

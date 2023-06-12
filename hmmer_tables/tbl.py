@@ -14,13 +14,13 @@ class TBLIndex(BaseModel):
 
 
 class TBLScore(BaseModel):
-    e_value: str
-    score: str
-    bias: str
+    e_value: float
+    score: float
+    bias: float
 
 
 class TBLDom(BaseModel):
-    exp: str
+    exp: float
     reg: int
     clu: int
     ov: int
@@ -51,13 +51,15 @@ def read_tbl(filename: PathLike) -> List[TBLRow]:
     rows = []
     with open(filename, "r") as file:
         for x in csv_iter(file):
+            seq = TBLScore(e_value=float(x[4]), score=float(x[5]), bias=float(x[6]))
+            dom = TBLScore(e_value=float(x[7]), score=float(x[8]), bias=float(x[9]))
             row = TBLRow(
                 target=TBLIndex(name=x[0], accession=x[1]),
                 query=TBLIndex(name=x[2], accession=x[3]),
-                full_sequence=TBLScore(e_value=x[4], score=x[5], bias=x[6]),
-                best_1_domain=TBLScore(e_value=x[7], score=x[8], bias=x[9]),
+                full_sequence=seq,
+                best_1_domain=dom,
                 domain_numbers=TBLDom(
-                    exp=x[10],
+                    exp=float(x[10]),
                     reg=int(x[11]),
                     clu=int(x[12]),
                     ov=int(x[13]),
